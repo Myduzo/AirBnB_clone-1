@@ -6,10 +6,21 @@ import datetime
 
 class BaseModel:
     """ BaseModel class"""
-    def __init__(self, id=None):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key == "created_at" or key == "updated_at":
+                        value, _, us = value.partition(".")
+                        value = datetime.datetime.strptime(value, '%Y-%m-%dT\
+%H:%M:%S')
+                        us = int(us.rstrip("Z"), 10)
+                        value = value + datetime.timedelta(microseconds=us)
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def save(self):
         self.updated_at = datetime.datetime.now()
