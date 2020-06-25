@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """ Base class """
-import json
 import uuid
 import datetime
-from os import path
 
 
 class BaseModel:
