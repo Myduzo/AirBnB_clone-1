@@ -3,6 +3,8 @@
 import uuid
 import datetime
 from models import storage
+import copy
+
 
 class BaseModel:
     """ BaseModel class"""
@@ -32,8 +34,8 @@ class BaseModel:
                                      self.id, self.__dict__)
 
     def to_dict(self):
-        dt = dict(self.__dict__)
+        dt = copy.deepcopy(self.__dict__)
         dt['created_at'] = self.created_at.isoformat()
         dt['updated_at'] = self.updated_at.isoformat()
-        dt["__class__"] = "BaseModel"
+        dt["__class__"] = self.__class__.__name__
         return dt

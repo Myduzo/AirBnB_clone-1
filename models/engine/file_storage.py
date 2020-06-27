@@ -30,7 +30,9 @@ class FileStorage:
                 f.write(j_str)
 
     def reload(self):
-        if self.__file_path and path.exists(self.__file_path):
+        if FileStorage.__file_path and path.exists(
+                FileStorage.__file_path
+        ) and path.getsize(FileStorage.__file_path):
             with open(self.__file_path, encoding='utf-8') as f:
                 tmp = json.loads(f.read())
                 for key, value in tmp.items():
