@@ -6,6 +6,12 @@ import copy
 import datetime
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 def is_int(s):
@@ -41,68 +47,73 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, l):
         """Creates a New instance of a given class"""
+        classes = [
+            "BaseModel", "User", "State",
+            "City", "Amenity", "Place", "Review"
+        ]
         line = l.split()
         if len(line) == 0:
             print("** class name missing **")
-        elif line[0] == "BaseModel":
-            z = BaseModel()
-            z.save()
-            print(z.id)
+        elif line[0] in classes:
+            tmp = eval(line[0])()
+            tmp.save()
+            print(tmp.id)
         else:
             print("** class doesn't exist **")
 
     def do_show(self, l):
         """Prints the string representation of an instance\
 based on the class name and id"""
+        classes = [
+            "BaseModel", "User", "State",
+            "City", "Amenity", "Place", "Review"
+        ]
         line = l.split()
         if len(line) == 0:
             print("** class name missing **")
-        elif line[0] != "BaseModel":
+        elif line[0] not in classes:
             print("** class doesn't exist **")
         elif len(line) == 1:
             print("** instance id missing **")
         elif len(line) == 2:
-            dt = {}
-            for key, value in storage.all().items():
-                if line[1] in key and line[0] in key:
-                    dt[key] = copy.deepcopy(value)
-            if len(dt) == 0:
-                print("** no instance found **")
+            tmp = line[0] + "." + line[1]
+            if tmp in storage.all():
+                print(storage.all()[tmp])
             else:
-                print("[{}] ({}) {}".format(
-                    line[0], line[1], dt[line[0] + "." + line[1]]
-                ))
+                print("** no instance found **")
 
     def do_destroy(self, l):
         """Deletes an instance based on the class name and id"""
+        classes = [
+            "BaseModel", "User", "State",
+            "City", "Amenity", "Place", "Review"
+        ]
         line = l.split()
         if len(line) == 0:
             print("** class name missing **")
-        elif line[0] != "BaseModel":
+        elif line[0] not in classes:
             print("** class doesn't exist **")
         elif len(line) == 1:
             print("** instance id missing **")
         elif len(line) == 2:
-            for key, value in storage.all().items():
-                if line[1] in key and line[0] in key:
-                    dt = key
-            if len(dt) == 0:
-                print("** no instance found **")
-            else:
-                del storage.all()[dt]
+            tmp = line[0] + "." + line[1]
+            if tmp in storage.all():
+                del storage.all()[tmp]
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_all(self, l):
         """Prints all string representation of all instances"""
         line = l.split()
         str_list = []
-        for key, value in storage.all().items():
-            cls, _, idnum = key.partition(".")
+        for key in storage.all():
+            cls, _, _ = key.partition(".")
             if len(line) == 1:
                 if line[0] == cls:
-                    str_list.append("[{}] ({}) {}".format(cls, idnum, value))
+                    str_list.append(storage.all()[key].__str__())
             else:
-                str_list.append("[{}] ({}) {}".format(cls, idnum, value))
+                str_list.append(storage.all()[key].__str__())
         print(str_list)
 
     def do_update(self, l):
@@ -141,7 +152,7 @@ based on the class name and id"""
                         line[3] = tmp
                     if line[2][0] in '"\'' and line[2][-1] in '"\'':
                         line[2] = line[2][1:-1]
-                    value[str(line[2])] = line[3]
+                    value.__dict__[str(line[2])] = line[3]
                     storage.save()
                     base = 1
                     idnum = 1
