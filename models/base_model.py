@@ -2,7 +2,7 @@
 """ Base class """
 import uuid
 import datetime
-from models import storage
+import models
 import copy
 
 
@@ -21,13 +21,12 @@ class BaseModel:
                     setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            self.created_at = self.updated_at = datetime.datetime.now()
+            models.storage.new(self)
 
     def save(self):
         self.updated_at = datetime.datetime.now()
-        storage.save()
+        models.storage.save()
 
     def __str__(self):
         return "[{}] ({}) {}".format(self.__class__.__name__,
