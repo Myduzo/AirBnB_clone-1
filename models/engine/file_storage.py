@@ -24,7 +24,10 @@ class FileStorage:
             for key, value in cp_dict.items():
                 if type(value["created_at"]) is not str:
                     value["created_at"] = value["created_at"].isoformat()
+                if type(value["updated_at"]) is not str:
                     value["updated_at"] = value["updated_at"].isoformat()
+                cls, _, _ = key.partition(".")
+                value['__class__'] = cls
             j_str = json.dumps(cp_dict)
             with open(self.__file_path, mode='w', encoding='utf-8') as f:
                 f.write(j_str)
@@ -37,6 +40,7 @@ class FileStorage:
                 tmp = json.loads(f.read())
                 for key, value in tmp.items():
                     i = 0
+                    del value['__class__']
                     conver_value = value["created_at"]
                     while (i < 2):
                         conver_value, _, us = conver_value.partition(".")
