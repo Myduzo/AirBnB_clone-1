@@ -51,7 +51,13 @@ class HBNBCommand(cmd.Cmd):
             "BaseModel", "User", "State",
             "City", "Amenity", "Place", "Review"
         ]
-        line = l.split()
+        if l:
+            line = l.split()
+        else:
+            line = []
+        for l in range(len(line)):
+            if line[l][0] in '"\'' and line[l][-1] in '"\'':
+                line[l] = line[l][1:-1]
         if len(line) == 0:
             print("** class name missing **")
         elif line[0] in classes:
@@ -68,7 +74,13 @@ based on the class name and id"""
             "BaseModel", "User", "State",
             "City", "Amenity", "Place", "Review"
         ]
-        line = l.split()
+        if l:
+            line = l.split()
+        else:
+            line = []
+        for l in range(len(line)):
+            if line[l][0] in '"\'' and line[l][-1] in '"\'':
+                line[l] = line[l][1:-1]
         if len(line) == 0:
             print("** class name missing **")
         elif line[0] not in classes:
@@ -88,7 +100,13 @@ based on the class name and id"""
             "BaseModel", "User", "State",
             "City", "Amenity", "Place", "Review"
         ]
-        line = l.split()
+        if l:
+            line = l.split()
+        else:
+            line = []
+        for l in range(len(line)):
+            if line[l][0] in '"\'' and line[l][-1] in '"\'':
+                line[l] = line[l][1:-1]
         if len(line) == 0:
             print("** class name missing **")
         elif line[0] not in classes:
@@ -105,7 +123,10 @@ based on the class name and id"""
 
     def do_all(self, l):
         """Prints all string representation of all instances"""
-        line = l.split()
+        if l:
+            line = l.split()
+        else:
+            line = []
         str_list = []
         for key in storage.all():
             cls, _, _ = key.partition(".")
@@ -116,12 +137,43 @@ based on the class name and id"""
                 str_list.append(storage.all()[key].__str__())
         print(str_list)
 
+    def do_count(self, l):
+        """Counts all string representation of a given instance"""
+        if l:
+            line = l.split()
+        else:
+            line = []
+        for l in range(len(line)):
+            if line[l][0] in '"\'' and line[l][-1] in '"\'':
+                line[l] = line[l][1:-1]
+        count = 0
+        for key in storage.all():
+            cls, _, _ = key.partition(".")
+            if len(line) >= 1:
+                if line[0][0] in '"\'' and line[0][-1] in '"\'':
+                    line[0] = line[0][1:-1]
+                if line[0] == cls:
+                    count += 1
+            else:
+                break
+        print(count)
+
     def do_update(self, l):
         """Updates an instance based on the class name and id"""
-        line = l.split()
+        classes = [
+            "BaseModel", "User", "State",
+            "City", "Amenity", "Place", "Review"
+        ]
+        if l:
+            line = l.split()
+        else:
+            line = []
+        for l in range(len(line)):
+            if line[l][0] in '"\'' and line[l][-1] in '"\'':
+                line[l] = line[l][1:-1]
         if len(line) == 0:
             print("** class name missing **")
-        elif line[0] != "BaseModel":
+        elif line[0] not in classes:
             print("** class doesn't exist **")
         elif len(line) == 1:
             print("** instance id missing **")
@@ -168,6 +220,46 @@ based on the class name and id"""
                 print("** class doesn't exist **")
             elif len(idnum) == 0:
                 print("** no instance found **")
+
+    def parseline(self, l):
+        line, mlist = l.strip(), l.split()
+        if len(mlist) <= 1:
+            if line in self.identchars:
+                return line, None, line
+            else:
+                if "." in line:
+                    arg, _, cmd = line.partition(".")
+                    if "()" == cmd[-2:]:
+                        cmd = cmd[:-2]
+                    elif "(" in cmd and ")" in cmd:
+                        x = cmd.find('(')
+                        id = cmd[x+1:cmd.find(')')]
+                        if ', ' in id:
+                            arg_list = id.split(', ')
+                            for i in arg_list:
+                                arg += ' ' + i
+                        else:
+                            arg += ' ' + id
+                        cmd = cmd[:x]
+                    return cmd, arg, cmd + ' ' + arg
+                else:
+                    return line, None, line
+        else:
+            if ("(" in line and ")" in line and "." in line and
+                line[line.find('.')+1:line.find('(')] == "update"):
+                cmd = line[line.find('.')+1:line.find('(')]
+                arg = line[:line.find('.')]
+                left = line[line.find('(')+1:-1]
+                left = left.split(', ')
+                for i in left:
+                    arg += ' ' + i
+                return cmd, arg, cmd + ' ' + arg
+            else:
+                i, n = 0, len(line)
+                while i < n and line[i] in self.identchars:
+                    i = i+1
+                cmd, arg = line[:i], line[i:].strip()
+                return cmd, arg, line
 
 
 if __name__ == '__main__':
