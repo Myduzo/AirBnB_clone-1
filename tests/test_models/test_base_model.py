@@ -43,5 +43,6 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(test2.my_num, 89)
         self.assertEqual(test2.my_name, "Hol")
 
+
 if __name__ == '__main__':
     unittest.main()

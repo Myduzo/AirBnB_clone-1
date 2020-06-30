@@ -246,7 +246,7 @@ based on the class name and id"""
                     return line, None, line
         else:
             if ("(" in line and ")" in line and "." in line and
-                line[line.find('.')+1:line.find('(')] == "update"):
+               line[line.find('.')+1:line.find('(')] == "update"):
                 cmd = line[line.find('.')+1:line.find('(')]
                 arg = line[:line.find('.')]
                 left = line[line.find('(')+1:-1]
