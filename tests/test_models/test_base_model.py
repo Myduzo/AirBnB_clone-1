@@ -29,6 +29,18 @@ class TestBaseModel(unittest.TestCase):
 		test1 = BaseModel()
 		self.assertIsInstance(test1.to_dict(), dict)
 	
+	def testInit(self):
+		"""Test init"""
+		test1 = BaseModel()
+		test1.my_num = 89
+		test1.my_name = "Hol"
+		test2 = BaseModel(**test1.to_dict())
+
+		self.assertEqual(test1.id, test2.id)
+		self.assertEqual(test1.created_at, test2.created_at)
+		self.assertEqual(test1.updated_at, test2.updated_at)
+		self.assertEqual(test2.my_num, 89)
+		self.assertEqual(test2.my_name, "Hol")
 
 if __name__ == '__main__':
 	unittest.main()
