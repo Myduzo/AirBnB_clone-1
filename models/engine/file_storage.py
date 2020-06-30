@@ -19,9 +19,11 @@ class FileStorage:
     __objects = {}
 
     def all(self):
+        """public instance methods"""
         return FileStorage.__objects
 
     def new(self, obj):
+        """public instance methods"""
         x = obj.__class__.__name__ + '.' + obj.id
         FileStorage.__objects[x] = obj
 
