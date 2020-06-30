@@ -32,11 +32,4 @@ class TestFileStorage(unittest.TestCase):
 		FileStorage._FileStorage__objects = my_dict
 		self.assertEqual(my_dict, FileStorage().all())
 
-	def test_new(self):
-		"""Test new"""
-		test = BaseModel()
-		my_class = FileStorage()
-		my_class.new(test)
-
-		self.assertIs(type(my_class.all()), dict)
-		self.assertEqual(my_class.all()["BaseModel" + "." + test.id], test)
+	
