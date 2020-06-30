@@ -41,5 +41,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIs(type(my_class.all()), dict)
         self.assertEqual(my_class.all()["BaseModel" + "." + test.id], test)
 
+
 if __name__ == '__main__':
     unittest.main()
