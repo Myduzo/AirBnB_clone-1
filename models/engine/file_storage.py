@@ -26,6 +26,7 @@ class FileStorage:
         FileStorage.__objects[x] = obj
 
     def save(self):
+        """public instance method"""
         if self.__file_path:
             dt = {}
             for key, value in FileStorage.__objects.items():
@@ -35,6 +36,7 @@ class FileStorage:
                 f.write(j_str)
 
     def reload(self):
+        """public instance method"""
         if FileStorage.__file_path and path.exists(
                 FileStorage.__file_path
         ) and path.getsize(FileStorage.__file_path):
