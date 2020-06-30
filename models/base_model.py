@@ -25,14 +25,17 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
+        """public instance method"""
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
     def __str__(self):
+        """print a string"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
     def to_dict(self):
+        """public instance method"""
         dt = copy.deepcopy(self.__dict__)
         dt['created_at'] = self.created_at.isoformat()
         dt['updated_at'] = self.updated_at.isoformat()
