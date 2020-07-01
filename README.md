@@ -79,5 +79,5 @@ update <class name> <id> <attribute name>
 
 ## AUTHOR
 
-Mhamed Azouzi –
+Mhamed Azouzi – azouzimhamed@gmail.com
 Youssef Sahli – Sahli.youssef@outlook.com
