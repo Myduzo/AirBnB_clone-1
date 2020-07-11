@@ -2,7 +2,7 @@
 > The Holberton B&B.
 
 
-![](images\logo.png)
+![](images/logo.png)
 
 
 
