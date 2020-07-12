@@ -1,0 +1,30 @@
+* {
+margin: 0;
+padding: 0;
+}
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: #484848;
+    font-size: 14px;
+    font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: 100%;
+
+}
+.cont {
+    min-height: 100%;
+}
+.main {
+#    overflow: auto;
+    padding-bottom: 60px;
+    min-height: 100%;
+}
+.container {
+
+    max-width: 1000px;
+    margin: 30px auto;
+    min-height: 100%;
+}
