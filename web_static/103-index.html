@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AirBnB clone</title>
+    <link rel="stylesheet" href="styles/103-common.css">
+    <link rel="stylesheet" href="styles/103-header.css">
+    <link rel="stylesheet" href="styles/103-footer.css">
+    <link rel="stylesheet" href="styles/103-filters.css">
+    <link rel="stylesheet" href="styles/103-places.css">
+    <link rel="icon" href="images/icon.png">
+  </head>
+  <body>
+    <header role="banner" aria-label="Logo Holder">
+      <div id="mlogo" aria-hidden="true"></div>
+    </header>
+    <div class="container" role="Body" aria-label="Page Body">
+      <section class="filters" role="Search" aria-label="Search field">
+        <div class="locations" role="Location Search"
+	     aria-label="Search by location">
+          <h3 aria-hidden="true">States</h3>
+          <h4 aria-hidden="true">Tunis, Kairouan...</h4>
+          <div class="popover" aria-hidden="true">
+            <ul aria-hidden="true">
+              <li aria-hidden="true">
+                <h2 aria-hidden="true">Tunis:</h2>
+                <ul aria-hidden="true">
+		  <li aria-hidden="true">Sidi Bou</li>
+		  <li aria-hidden="true">Gammart</li>
+		  <li aria-hidden="true">La Marsa</li>
+		</ul>
+              </li>
+              <li aria-hidden="true">
+                <h2 aria-hidden="true">Kairouan:</h2>
+                <ul aria-hidden="true">
+		  <li aria-hidden="true">Kairouan Nord</li>
+		  <li aria-hidden="true">Kairouan Sud</li>
+		</ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="amenities" role="Amenities search"
+	     aria-label="Search by amenities">
+          <h3 aria-hidden="true">Amenities</h3>
+          <h4 aria-hidden="true">WiFi, Parking...</h4>
+          <div class="popover" aria-hidden="true">
+            <ul aria-hidden="true">
+	      <li aria-hidden="true">WiFi</li>
+	      <li aria-hidden="true">Parking</li>
+	      <li aria-hidden="true">Hair Dryer</li>
+	    </ul>
+          </div>
+        </div>
+        <button role="button" aria-label="Search button">Search</button>
+      </section>
+      <section class="places" role="Show places" aria-label="Sample places">
+        <h1 aria-hidden="true">Places</h1>
+        <article>
+          <h2 class="tittle">Beach House</h2>
+          <div class="price_by_night"
+	       role="Price" aria-label="Show the price">$80</div>
+          <div class="information"
+	       role="info" aria-label="Different info">
+            <div class="max_guest"
+		 role="max guests" aria-label="Allowed guests number">
+	      <div class="img" aria-hidden="true"></div>
+	      <p aria-hidden="true">4 Guests</p>
+	    </div>
+            <div class="number_rooms"
+		 role="rooms" aria-label="Rooms number">
+              <div class="img" aria-hidden="true"></div>
+              <p aria-hidden="true">2 Bedrooms</p>
+            </div>
+            <div class="number_bathrooms"
+		 role="bathrooms" aria-label="Bathrooms number">
+              <div class="img" aria-hidden="true"></div>
+              <p aria-hidden="true">2 Bathrooms</p>
+            </div>
+          </div>
+          <div class="user" role="owner" aria-label="Place's owner">
+	    <p aria-hidden="true">
+	      <b aria-hidden="true">Owner:</b> Awesome owner</p>
+	  </div>
+          <div class="description"
+	       role="description" aria-label="Place's description">
+	    <p aria-hidden="true">This is a lovely 2 bedrooms and 2
+ bathrooms apartment that can accommodate 4 people. It locates at the center
+ of Shanghai and next to subway line 1, 1 stop to People Square, 2 stops to
+ Bund, 3 stops to Jingan Temple.</p>
+          </div>
+          <div class="amenities"
+	       role="amenities" aria-label="Amenities list">
+            <h2 aria-hidden="true">Amenities</h2>
+            <ul aria-hidden="true">
+              <li class="wifi"  aria-hidden="true">Wifi</li>
+              <li class="tv"  aria-hidden="true">TV</li>
+              <li class="pet" aria-hidden="true">Pet friendly</li>
+            </ul>
+          </div>
+          <div class="reviews"
+	       role="amenities" aria-label="Reviews list">
+            <h2 aria-hidden="true">2 Reviews</h2>
+            <ul aria-hidden="true">
+              <li aria-hidden="true">
+                <h3 aria-hidden="true">
+		  From Bob Dylan the 27th January 2017</h3>
+                <p  aria-hidden="true">Epic Host, Nothing more I can say,
+		  5 star!</p>
+              </li>
+              <li aria-hidden="true">
+                <h3 aria-hidden="true">From Robert Lee the 26th March 2018</h3>
+                <p aria-hidden="true">Highly recommended!</p>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <article>
+          <h2 class="tittle">A Flat</h2>
+          <div class="price_by_night">$40</div>
+          <div class="information">
+            <div class="max_guest"><div class="img"></div><p>2 Guests</p></div>
+            <div class="number_rooms"><div class="img"></div><p>1 Bedroom</p>
+            </div>
+            <div class="number_bathrooms">
+              <div class="img"></div>
+              <p>1 Bathroom</p>
+            </div>
+          </div>
+          <div class="user"><p><b>Owner:</b> Kind owner</p></div>
+          <div class="description"><p>An affordable 1 Bedroom apartment comes
+ with a bathroom and mini kitchen. The extra high ceilings make it feel more
+ spacious. It's located in the center of the city 2 min walk from the old
+ market, 5 min walk from the museum, 4 min walk from the central bus station
+ where you can go to one of the biggest amusement parks in the world </p>
+          </div>
+          <div class="amenities">
+            <h2>Amenities</h2>
+            <ul>
+              <li class="wifi">Wifi</li>
+              <li class="lift">Lift</li>
+            </ul>
+          </div>
+          <div class="reviews">
+            <h2>1 Review</h2>
+            <ul>
+              <li>
+                <h3>From Mary the 17th January 2019</h3>
+                <p>It's a cool place in a convenient location, great for the
+ price. It had easy access to the metro and was a comfortable place for our
+ family of four. Everything was in working order in the apartment, and the
+ shower water pressure and the temperature were good. The bed was comfortable,
+ although the bedroom was a little tight for space. The kitchen is
+ well-equipped to make meals. The apartment is on the first floor of a large
+ apartment building.</p>
+              </li>
+            </ul>
+          </div>
+        </article>
+        <article>
+          <h2 class="tittle">Cozy House</h2>
+          <div class="price_by_night">$60</div>
+          <div class="information">
+            <div class="max_guest"><div class="img"></div><p>2 Guests</p></div>
+            <div class="number_rooms"><div class="img"></div>
+              <p>1 Bedroom</p>
+            </div>
+            <div class="number_bathrooms">
+              <div class="img"></div>
+              <p>1 Bathroom</p>
+            </div>
+          </div>
+          <div class="user"><p><b>Owner:</b> Cool owner</p></div>
+          <div class="description">
+            <p>The house is equipped with all the necessary living essentials
+ such as cutlery / plates / glasses etc for an everyday living. Close to all
+ restaurants, bars, traditional market, major beaches, and recreation clubs.
+            </p>
+          </div>
+          <div class="amenities">
+            <h2>Amenities</h2>
+            <ul>
+              <li class="tv">TV</li>
+              <li class="ac">Air Conditioner</li>
+            </ul>
+          </div>
+          <div class="reviews">
+            <h2>3 Reviews</h2>
+            <ul>
+              <li>
+                <h3>From Laura 8th January 2020</h3>
+                <p>Wonderful mini-apartments in a quiet section of town!
+ The area was very residential and was the perfect location for a week-long
+ stay. Everything was clean and comfortable.</p>
+              </li>
+              <li>
+                <h3>From Paul the 2nd January 2020</h3>
+                <p>Great staff, clean room, area well communicated with the
+ center.</p>
+              </li>
+              <li>
+                <h3>From Frank the 18th January 2020</h3>
+                <p>It made me feel like at home. Everything was clean,
+ comfortable, and cozy. I can’t leave without mentioning the staff; they were
+ so helpful, lovely, and kind. Even though it’s quite a long way from the
+ center, the hotel is easily reachable. In short, it was worth staying
+ there.</p>
+              </li>
+            </ul>
+	  </div>
+	</article>
+      </section>
+    </div>
+    <footer role="Footer" aria-label="Holberton School">
+      <p aria-hidden="true">Holberton School</p>
+    </footer>
+  </body>
+</html>
